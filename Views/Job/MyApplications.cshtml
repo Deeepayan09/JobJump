@@ -1,0 +1,47 @@
+@model IEnumerable<JobJump.Models.JobApplication>
+
+<h2 class="mb-4 text-center">📄 My Applications</h2>
+
+<div class="row">
+@foreach (var app in Model)
+{
+    <div class="col-md-6 mb-4">
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-body">
+                <h5 class="fw-bold">@app.Job.Title</h5>
+                <p class="text-muted">@app.Job.Company</p>
+
+                <p class="mb-2">
+                    <strong>Status:</strong>
+                    @if (app.Status == "Pending")
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                    else if (app.Status == "Accepted")
+                    {
+                        <span class="badge bg-success">Accepted</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
+                </p>
+
+                <p>
+                    <strong>Applied On:</strong><br />
+                    @app.AppliedOn.ToString("dd MMM yyyy hh:mm tt")
+                </p>
+            </div>
+
+            <div class="card-footer bg-white border-0">
+                <a asp-action="Details" asp-route-id="@app.JobId" 
+                   class="btn btn-outline-primary btn-sm">
+                    View Job
+                </a>
+            </div>
+
+        </div>
+    </div>
+}
+</div>

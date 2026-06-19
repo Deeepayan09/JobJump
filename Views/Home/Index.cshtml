@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mt-5">
+
+    <h1 class="display-4 fw-bold">🚀 Welcome to JobJump</h1>
+    <p class="lead mt-3">
+        Find your dream job or hire the perfect candidate.
+    </p>
+
+    <div class="mt-4">
+        <a asp-controller="Job" asp-action="Index" class="btn btn-primary btn-lg m-2">
+            Browse Jobs
+        </a>
+
+        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-success btn-lg m-2">
+            Get Started
+        </a>
+    </div>
+</div>
+
+<hr class="my-5" />
+
+<div class="row text-center">
+
+    <div class="col-md-4">
+        <h3>👨‍💼 Employers</h3>
+        <p>Post jobs and find talented candidates easily.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h3>👨‍💻 Job Seekers</h3>
+        <p>Apply to jobs and track your applications.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h3>⚡ Fast & Simple</h3>
+        <p>Clean, simple and efficient job platform.</p>
+    </div>
+
+</div>

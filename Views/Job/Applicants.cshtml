@@ -1,0 +1,206 @@
+@model IEnumerable<JobJump.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "Applicants";
+}
+
+<div class="container mt-4">
+
+    <!-- PAGE TITLE -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5">
+            📄 Job Applicants
+        </h1>
+
+        <p class="text-muted">
+            Manage applicants and review AI resume scores
+        </p>
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+
+            @TempData["Message"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+    <!-- APPLICANTS TABLE -->
+    <div class="card shadow border-0 rounded-4">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Candidate</th>
+                            <th>Applied On</th>
+                            <th>Resume</th>
+                            <th>AI Score</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+@foreach (var app in Model)
+{
+                        <tr>
+
+                            <!-- EMAIL -->
+                            <td>
+                                <div class="fw-bold">
+                                    @app.User?.Email
+                                </div>
+                            </td>
+
+                            <!-- DATE -->
+                            <td>
+                                @app.AppliedOn.ToString("dd MMM yyyy")
+                                <br />
+
+                                <small class="text-muted">
+                                    @app.AppliedOn.ToString("hh:mm tt")
+                                </small>
+                            </td>
+
+                            <!-- RESUME -->
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(app.ResumePath))
+                                {
+                                    <a href="@app.ResumePath"
+                                       target="_blank"
+                                       class="btn btn-outline-primary btn-sm">
+
+                                        View Resume
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">
+                                        No Resume
+                                    </span>
+                                }
+
+                            </td>
+
+                            <!-- AI SCORE -->
+                            <td>
+
+                                @if (app.MatchScore >= 80)
+                                {
+                                    <span class="badge bg-success fs-6">
+                                        ⭐ @app.MatchScore / 100
+                                    </span>
+                                }
+                                else if (app.MatchScore >= 50)
+                                {
+                                    <span class="badge bg-warning text-dark fs-6">
+                                        ⚡ @app.MatchScore/ 100
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger fs-6">
+                                        ❌ @app.MatchScore / 100
+                                    </span>
+                                }
+
+                            </td>
+
+                            <!-- STATUS -->
+                            <td>
+
+                                @if (app.Status == "Accepted")
+                                {
+                                    <span class="badge bg-success">
+                                        Accepted
+                                    </span>
+                                }
+                                else if (app.Status == "Rejected")
+                                {
+                                    <span class="badge bg-danger">
+                                        Rejected
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        Pending
+                                    </span>
+                                }
+
+                            </td>
+
+                            <!-- ACTIONS -->
+                            <td>
+
+                                @if (app.Status == "Pending")
+                                {
+                                    <div class="d-flex gap-2">
+
+                                        <a asp-action="Accept"
+                                           asp-route-id="@app.Id"
+                                           class="btn btn-success btn-sm">
+
+                                            Accept
+                                        </a>
+
+                                        <a asp-action="Reject"
+                                           asp-route-id="@app.Id"
+                                           class="btn btn-danger btn-sm">
+
+                                            Reject
+                                        </a>
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">
+                                        No Action
+                                    </span>
+                                }
+
+                            </td>
+
+                        </tr>
+}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BACK BUTTON -->
+    <div class="mt-4">
+
+        <a asp-action="MyJobs"
+           class="btn btn-dark rounded-3">
+
+            ← Back to My Jobs
+
+        </a>
+
+    </div>
+
+</div>

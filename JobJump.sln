@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobJump", "JobJump.csproj", "{CAF49F4E-E954-4453-4AC4-CDADE633533E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAF49F4E-E954-4453-4AC4-CDADE633533E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF49F4E-E954-4453-4AC4-CDADE633533E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF49F4E-E954-4453-4AC4-CDADE633533E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF49F4E-E954-4453-4AC4-CDADE633533E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A37B5612-2FF9-4F24-A961-87F31C6747BD}
+	EndGlobalSection
+EndGlobal

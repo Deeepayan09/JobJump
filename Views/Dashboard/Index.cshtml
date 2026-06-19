@@ -1,0 +1,152 @@
+@{
+    ViewData["Title"] = "Employer Dashboard";
+}
+
+<div class="container mt-5">
+
+    <!-- TITLE -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5">
+            📊 Employer Dashboard
+        </h1>
+
+        <p class="text-muted">
+            Analytics and hiring insights
+        </p>
+    </div>
+
+    <!-- ANALYTICS CARDS -->
+    <div class="row g-4">
+
+        <!-- TOTAL JOBS -->
+        <div class="col-md-3">
+            <div class="card shadow border-0 rounded-4 text-center p-4">
+                <h2 class="fw-bold text-primary">
+                    @ViewBag.TotalJobs
+                </h2>
+
+                <h5>Total Jobs</h5>
+            </div>
+        </div>
+
+        <!-- APPLICATIONS -->
+        <div class="col-md-3">
+            <div class="card shadow border-0 rounded-4 text-center p-4">
+                <h2 class="fw-bold text-dark">
+                    @ViewBag.TotalApplications
+                </h2>
+
+                <h5>Applications</h5>
+            </div>
+        </div>
+
+        <!-- ACCEPTED -->
+        <div class="col-md-3">
+            <div class="card shadow border-0 rounded-4 text-center p-4">
+                <h2 class="fw-bold text-success">
+                    @ViewBag.Accepted
+                </h2>
+
+                <h5>Accepted</h5>
+            </div>
+        </div>
+
+        <!-- REJECTED -->
+        <div class="col-md-3">
+            <div class="card shadow border-0 rounded-4 text-center p-4">
+                <h2 class="fw-bold text-danger">
+                    @ViewBag.Rejected
+                </h2>
+
+                <h5>Rejected</h5>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CHART -->
+    <div class="card shadow border-0 rounded-4 mt-5 p-4">
+
+        <h3 class="text-center mb-4">
+            📈 Hiring Analytics
+        </h3>
+
+        <canvas id="jobChart" height="120"></canvas>
+
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="row mt-5 g-3">
+
+        <div class="col-md-4">
+            <a asp-controller="Job"
+               asp-action="Create"
+               class="btn btn-primary w-100 p-3 rounded-4">
+                ➕ Create New Job
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a asp-controller="Job"
+               asp-action="MyJobs"
+               class="btn btn-dark w-100 p-3 rounded-4">
+                💼 Manage Jobs
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a asp-controller="Job"
+               asp-action="Index"
+               class="btn btn-success w-100 p-3 rounded-4">
+                🌍 Browse Platform
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    const ctx = document.getElementById('jobChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+
+        data: {
+            labels: [
+                'Jobs',
+                'Applications',
+                'Accepted',
+                'Rejected'
+            ],
+
+            datasets: [{
+                label: 'Platform Analytics',
+
+                data: [
+                    @ViewBag.TotalJobs,
+                    @ViewBag.TotalApplications,
+                    @ViewBag.Accepted,
+                    @ViewBag.Rejected
+                ],
+
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            responsive: true,
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>

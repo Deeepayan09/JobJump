@@ -1,0 +1,30 @@
+@model JobJump.Models.Job
+
+<h2 class="mb-4 text-danger">⚠️ Delete Job</h2>
+
+<div class="card shadow p-4 border-danger">
+
+    <h5 class="text-danger">Are you sure you want to delete this job?</h5>
+
+    <hr />
+
+    <p><strong>Title:</strong> @Model.Title</p>
+    <p><strong>Company:</strong> @Model.Company</p>
+
+    <div class="mt-4 d-flex justify-content-between">
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn btn-danger">
+                Yes, Delete
+            </button>
+        </form>
+
+        <a asp-action="MyJobs" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </div>
+
+</div>

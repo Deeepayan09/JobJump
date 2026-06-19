@@ -1,0 +1,38 @@
+@model IEnumerable<JobJump.Models.SavedJob>
+
+<h2 class="mb-4 text-center">📌 Saved Jobs</h2>
+
+<div class="row">
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-body">
+
+                <h4>@item.Job.Title</h4>
+
+                <h6 class="text-muted">
+                    @item.Job.Company
+                </h6>
+
+                <p>
+                    @(item.Job.Description.Length > 100
+                        ? item.Job.Description.Substring(0,100) + "..."
+                        : item.Job.Description)
+                </p>
+
+                <a asp-action="Details"
+                   asp-route-id="@item.Job.Id"
+                   class="btn btn-primary btn-sm">
+                    View
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+}
